@@ -4,6 +4,7 @@
     "dockerfile": "Dockerfile"
   },
   "settings": {
+    "terminal.integrated.defaultProfile.linux": "bash",
     "python.pythonPath": "/workspace/.venv/bin/python"
   },
   "postCreateCommand": "/workspace/.venv/bin/pip install -r requirements.txt",
