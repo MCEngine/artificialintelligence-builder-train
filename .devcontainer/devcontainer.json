@@ -7,11 +7,11 @@
     "terminal.integrated.defaultProfile.linux": "bash",
     "python.pythonPath": "/workspace/.venv/bin/python"
   },
-  "postCreateCommand": "/workspace/.venv/bin/pip install -r requirements.txt",
+  "postCreateCommand": "python3 -m venv .venv && . .venv/bin/activate && pip install --upgrade pip && pip install -r requirements.txt",
   "customizations": {
     "vscode": {
       "settings": {
-          "workbench.colorTheme": "Default Dark Modern"
+        "workbench.colorTheme": "Default Dark Modern"
       },
       "extensions": ["ms-python.python"]
     }
