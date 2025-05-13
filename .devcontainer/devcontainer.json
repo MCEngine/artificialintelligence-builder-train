@@ -1,23 +1,16 @@
 {
-  "name": "Python PyTorch",
+  "name": "Minecraft AI Builder",
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "features": {
-    "ghcr.io/devcontainers/features/python:1": {
-      "version": "3.11"
-    }
+  "settings": {
+    "python.pythonPath": "/workspace/.venv/bin/python"
   },
+  "postCreateCommand": "/workspace/.venv/bin/pip install -r requirements.txt",
   "customizations": {
     "vscode": {
-      "settings": {
-        "workbench.colorTheme": "Default Dark Modern"
-      },
-      "extensions": [
-        "ms-python.python",
-        "ms-toolsai.jupyter",
-        "ms-azuretools.vscode-docker"
-      ]
+      "extensions": ["ms-python.python"]
     }
-  }
+  },
+  "remoteUser": "root"
 }
