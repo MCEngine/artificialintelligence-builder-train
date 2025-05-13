@@ -5,3 +5,8 @@ __pycache__/
 *.pyd
 .env
 data/
+*.csv
+*.pt
+*.zip
+*.png
+*.jpeg

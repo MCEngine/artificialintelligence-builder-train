@@ -16,10 +16,17 @@ def get_schematic_files(root_dir="data"):
 def parse_schematic(file_path):
     try:
         schematic = load(file_path)
-        blocks = schematic.root["Blocks"]
-        width = schematic.root["Width"]
-        height = schematic.root["Height"]
-        length = schematic.root["Length"]
+        blocks = list(schematic["Blocks"])  # force decode
+        width = int(schematic["Width"])
+        height = int(schematic["Height"])
+        length = int(schematic["Length"])
+
+        if len(blocks) == 0:
+            print(f"{file_path} has empty 'Blocks'")
+        else:
+            print(f"{file_path} - Size: {width}x{height}x{length}, Blocks: {len(blocks)}")
+            print(f"First 10 block IDs: {blocks[:10]}")
+
         return blocks, width, height, length
     except Exception as e:
         print(f"Error parsing {file_path}: {e}")
@@ -43,8 +50,17 @@ def main():
         for y in range(height):
             for z in range(length):
                 for x in range(width):
-                    index = y * width * length + z * width + x
-                    block_id = blocks[index]
+                    index = y * length * width + z * width + x  # Correct schematic layout
+                    block_id = int(blocks[index])
+
+                    # Optional: filter out air blocks (ID = 0)
+                    # if block_id == 0:
+                    #     continue
+
+                    # Debug: print a few sample lines
+                    if len(all_data) < 10:
+                        print(f"{schematic_type},{x},{y},{z},{block_id}")
+
                     all_data.append([schematic_type, x, y, z, block_id])
 
     save_to_csv(all_data)
